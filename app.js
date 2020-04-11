@@ -50,4 +50,4 @@ io.sockets.on('connection', function (socket, pseudo) {
 });
 
 
-server.listen(80);
+server.listen(8080);
