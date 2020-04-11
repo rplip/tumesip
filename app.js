@@ -13,9 +13,6 @@ app.get('/', function (req, res) {
   });
 
 let words = {};
-let gamer = {};
-let player = 1;
-let order = 1;
 let increment = 0;
 let wordsInArray = [];
 
@@ -44,32 +41,13 @@ io.sockets.on('connection', function (socket, pseudo) {
         socket.broadcast.emit('global_words', {
             wordArray: socket.wordsInArray,
         })
-        /*socket.broadcast.emit('transfert_words', {
-            pseudo: socket.pseudo,
-            wordUser: wordsInArray,
-        });*/
     });
     
     socket.on('transfert_game_array', function (game_array) {
         socket.broadcast.emit('actual_game_array', game_array);
     });
 
-    /*socket.on('choosing_team', function (myTeam) {
-
-        gamer['player' + player++] = {
-            name: socket.pseudo,
-            team: myTeam, 
-            order: order++,
-        };
-
-        socket.gamer = gamer;
-        console.log(gamer);
-        socket.broadcast.emit('gamer_data', {
-            gamer : socket.gamer,
-        });
-    });*/
-
 });
 
 
-server.listen(8080);
+server.listen(80);
