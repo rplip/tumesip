@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Times Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+            <div id="leftside">
+                
+            </div>
+            <div id="rightside">
+                <div class="container">
+                    <div class="row" id="topside">
+                        <h1>Tume's IP</h1>
+                    </div>
+                    <div class="row" id="downside">
+                        <form action="/" method="post" class="container" id="form_addword">
+                            <div class="row">
+                                <div class="col-sm-12 mb-1">
+                                    <input type="text" name="word1" id="word1" placeholder="Votre mot..." required autofocus/>
+                                </div>
+                                <div class="col-sm-12 mb-1">
+                                    <input type="text" name="word2" id="word2" placeholder="Votre mot..." required />
+                                </div>
+                                <div class="col-sm-12 mb-1">
+                                    <input type="text" name="word3" id="word3" placeholder="Votre mot..." required />
+                                </div>
+                                <div class="col-sm-12 mb-1">
+                                    <input type="text" name="word4" id="word4" placeholder="Votre mot..." required />
+                                </div>
+                                <div class="col-sm-12 mb-1">
+                                    <input type="text" name="word5" id="word5" placeholder="Votre mot..." required />
+                                </div>
+                                <div class="col-sm-12 mb-1">
+                                    <input type="text" name="word6" id="word6" placeholder="Votre mot..." required />
+                                </div>
+                                <div class="col-sm-12 mb-1">
+                                    <input type="text" name="word7" id="word7" placeholder="Votre mot..." required />
+                                </div>
+                                <div class="col-sm-12 mb-1">
+                                    <input type="text" name="word8" id="word8" placeholder="Votre mot..." required />
+                                </div>
+                                <div class="col-sm-12 mb-1">
+                                    <input type="text" name="word9" id="word9" placeholder="Votre mot..." required />
+                                </div>
+                                <div class="col-sm-12 mb-4">
+                                    <input type="text" name="word9" id="word9" placeholder="Votre mot..." required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <input type="submit" class="btn btn-secondary" id="send_word" value="valider">
+                                </div>
+                            </div>
+                        </form>
+
+                        <section id="section_pregame" class="container d-none">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-xs-12" id="ready_game_text">
+                                        <h3>Bienvenue</h3>
+                                        <p>Si vous êtes prêt à jouer<br>
+                                            vous pouvez cliquer sur le bouton <br>
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-12 d-none" id="start_game_text">
+                                        <h4>Avant de commencer</h4>
+                                            <ol>
+                                                <li>Choisir les équipes et qui joue en 1er</li>
+                                                <li>Le 1er joueur à faire deviner clique sur <span class="font-weight-bolder">"Jouer"</span></li>
+                                                <li>Les autres joueurs peuvent lancer le chrono</li>
+                                            </ol>
+                                        </p>
+                                        <h4>Pendant la partie</h4>
+                                        <ul>
+                                            <li><button type="button" class="btn btn-warning mb-1 btn-sm">Passer</button> Si vous souhaitez changer de mot</li>
+                                            <li><button type="button" class="btn btn-success mb-1 btn-sm">Valider</button> Si votre equipe à trouvé le mot</li>
+                                            <li><button type="button" class="btn btn-danger mb-2 btn-sm">Fin de tour</button> Une fois le temps écoulé</li>
+                                        </ul>
+                                        <h4>Let's Play</h4>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center mb-2">
+                                    <div class="col-xs-12">
+                                        <button type="button" class="btn btn-success" id="ready_game">Pret</button>
+                                        <button type="button" class="btn btn-primary d-none" id="start_game">Jouer</button>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center mb-2 d-none" id="chrono_game">
+                                    <form name="chronoForm">
+                                        <input type="text" name="chronotime" id="chronotime" value="0:00:00:00"/>
+                                        <input type="button" name="startstop" value="start" onClick="chronoStart()" />
+                                        <input type="button" name="reset" value="reset" onClick="chronoReset()" />
+                                    </form>
+                                </div>
+                                <div class="row justify-content-center mb-2 mt-4">
+                                    <div class="col-xs-12">
+                                        <button type="button" class="btn btn-info d-none" id="next_row">Manche suivante</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="caontainer d-none" id="section_game">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-12" id="game_word">
+                                        <div class="card text-center" id="cardgame">
+                                            <div class="card-header">
+                                              Le mot à faire deviner est :
+                                            </div>
+                                            <div class="card-body container">
+                                                <h4 class="card-title mb-5" id="display_word" ></h4>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <button type="button" class="btn btn-warning mb-2" id="skip_word">Passer</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <button type="button" class="btn btn-success mb-2" id="validate_word">Valider</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                <button type="button" class="btn btn-danger mb-2" id="end_of_turn">Fin de tour</button>
+                                            </div>
+                                          </div>
+                                        <p class="" ></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                        
+                    </div>
+            </div>
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+        // Connexion à socket.io
+        var socket = io.connect('http://localhost:8080');
+
+        let formword = document.getElementById("form_addword");
+        let formteam = document.getElementById("form_chooseteam");
+        let formstart = document.getElementById("form_startgame");
+        let pregame = document.getElementById("section_pregame");
+        let game = document.getElementById("section_game");
+        let skip = document.getElementById("skip_word");
+        let validate = document.getElementById("validate_word");
+        let startgame = document.getElementById("start_game");
+        let startgametext = document.getElementById("start_game_text");
+        let readygame = document.getElementById("ready_game");
+        let readygametext = document.getElementById("ready_game_text");
+        let displayword = document.getElementById("display_word");
+        let endofturn = document.getElementById("end_of_turn");
+        let nextrow = document.getElementById("next_row");
+        let chronogame = document.getElementById("chrono_game")
+
+        // On demande le pseudo, on l'envoie au serveur et on l'affiche dans le titre
+        var pseudo = prompt('Pseudo ?');
+        socket.emit('new_gamer', pseudo);
+        document.title = pseudo + ' - ' + document.title;
+
+        $('#form_addword').submit(function () { 
+            
+            let wordUser = {};
+            wordUser = {
+                word1: $('#word1').val(),
+                word2: $('#word2').val(),
+                word3: $('#word3').val(),
+                word4: $('#word4').val(),
+                word5: $('#word5').val(),
+                word6: $('#word6').val(),
+                word7: $('#word7').val(),
+                word8: $('#word8').val(),
+                word9: $('#word9').val(),
+            };
+            socket.emit('transfert_words', wordUser); // Transmet les mots aux autres
+            formword.classList.add("d-none");
+            pregame.classList.remove("d-none");
+            return false; // Permet de bloquer l'envoi "classique" du formulaire
+        });
+
+        socket.on('global_words', function(data) {
+            socket.emit('transfert_game_array', data.wordArray);
+        })
+        socket.on('actual_game_array' , function(array) {
+            shuffleArray(array);
+        })
+
+        function shuffleArray(array) {
+            for(k = array.length - 1; k > 0 ; k--) { // Melange (shuffle) les éléments de l'array
+                const j = Math.floor(Math.random() * k)
+                const temp = array[k]
+                array[k] = array[j]
+                array[j] = temp
+            }
+            loadword(array, "");
+            skip.onclick = function () {  // bouton passer
+                for(l = array.length - 1; l > 0 ; l--) { // Melange (shuffle) les éléments de l'array
+                    const m = Math.floor(Math.random() * l)
+                    const temp = array[l]
+                    array[l] = array[m]
+                    array[m] = temp
+                }
+                loadword(array, "skip");
+                socket.emit('transfert_game_array', array);
+            }
+            validate.onclick = function () { // Bouton valider
+                /*let number = 0;
+                count = number++;
+                console.log(count);*/
+                array.splice(0, 1);
+                loadword(array, "validate");
+                socket.emit('transfert_game_array', array);
+            }
+        }
+        
+        function loadword(array, choice) { //Affichage des mots
+                    console.log(array);
+                $.each( array, function( key, value ) {
+                    displayword.innerHTML = "";
+                    console.log(value);
+                    $('#display_word').append(value);
+                    return false;
+                });
+        }
+
+        startgame.onclick = function () {
+           game.classList.remove("d-none");
+           pregame.classList.add('d-none');
+        }
+
+        readygame.onclick = function () {
+            socket.emit('transfert_words', {});
+            readygame.classList.add("d-none");
+            readygametext.classList.add("d-none");
+            startgame.classList.remove("d-none");
+            startgametext.classList.remove("d-none");
+            chronogame.classList.remove("d-none");
+        }
+
+        endofturn.onclick = function () {
+            game.classList.add("d-none");
+            pregame.classList.remove("d-none");
+            nextrow.classList.remove("d-none");
+            readygametext.classList.add("d-none");
+            startgametext.classList.add("d-none");
+        }
+
+        nextrow.onclick = function () {
+            readygame.classList.remove("d-none");
+            readygametext.classList.remove("d-none");
+            startgame.classList.add("d-none");
+            startgametext.classList.add("d-none");
+            chronogame.classList.add("d-none");
+            nextrow.classList.add("d-none");
+        }
+
+
+        /******* CHRONOMETRE *******/
+
+        var startTime = 0
+        var start = 0
+        var end = 0
+        var diff = 0
+        var timerID = 0
+        window.onload = chronoStop;
+        function chrono(){
+            end = new Date()
+            diff = end - start
+            diff = new Date(diff)
+            var msec = diff.getMilliseconds()
+            var sec = diff.getSeconds()
+            var min = diff.getMinutes()
+            var hr = diff.getHours()-1
+            if (min < 10){
+                min = "0" + min
+            }
+            if (sec < 10){
+                sec = "0" + sec
+            }
+            if(msec < 10){
+                msec = "00" +msec
+            }
+            else if(msec < 100){
+                msec = "0" +msec
+            }
+            document.getElementById("chronotime").value = hr + ":" + min + ":" + sec + ":" + msec
+            timerID = setTimeout("chrono()", 10)
+        }
+        function chronoStart(){
+            document.chronoForm.startstop.value = "stop"
+            document.chronoForm.startstop.onclick = chronoStop
+            document.chronoForm.reset.onclick = chronoReset
+            start = new Date()
+            chrono()
+        }
+        function chronoContinue(){
+            document.chronoForm.startstop.value = "stop"
+            document.chronoForm.startstop.onclick = chronoStop
+            document.chronoForm.reset.onclick = chronoReset
+            start = new Date()-diff
+            start = new Date(start)
+            chrono()
+        }
+        function chronoReset(){
+            document.getElementById("chronotime").value = "0:00:00:000"
+            start = new Date()
+        }
+        function chronoStopReset(){
+            document.getElementById("chronotime").value = "0:00:00:000"
+            document.chronoForm.startstop.onclick = chronoStart
+        }
+        function chronoStop(){
+            document.chronoForm.startstop.value = "start"
+            document.chronoForm.startstop.onclick = chronoContinue
+            document.chronoForm.reset.onclick = chronoStopReset
+            clearTimeout(timerID)
+        }
+        
+    </script>
+</body>
+</html>

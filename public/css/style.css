@@ -1,0 +1,67 @@
+body {
+    text-align: center;
+}
+
+#start_game_text > ol {
+    text-align: left;
+}
+
+#start_game_text > ul {
+    list-style: none;
+    text-align: left;
+    padding-left: 20px;
+}
+
+#cardgame {
+    width: 350px;
+}
+
+@media (min-width : 750px) { /* A partir de 750pixels */
+    #leftside {
+        width: 50%;
+        background-image: url("../image/lateralside.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        color: white;
+        display:flex;
+        flex-direction:column;
+        justify-content: space-between;
+        position: fixed;
+        height : 100vh;
+    }
+
+    #rightside {
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        margin-left: 50%;
+        height: 100vh;
+        justify-content: center;
+    }
+
+    h1, h5 {
+        display: none;
+    }
+
+
+
+
+}
+
+@media (max-width : 750px) { /* En dessous de 750px */
+    #topside {
+        background-image: url("../image/topside.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        color: white;
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+        height : 25vh;
+        color: #e3a926;
+    }
+
+    #downside {
+        margin-top: 1rem;
+    }
+}
