@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Times Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
@@ -14,9 +15,44 @@
             <div id="rightside">
                 <div class="container">
                     <div class="row" id="topside">
-                        <h1>Tume's IP</h1>
                     </div>
-                    <div class="row" id="downside">
+                    <div class="row d-none m-auto justify-content-center" id="countdown">
+                    </div>
+                    <div class="progress d-none m-auto" id="progress_bar">
+                        <div id="progress_bar_active" class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="60"></div>
+                    </div>
+                    <div class="row justify-content-center" id="firstdownside">
+                        <div class="col-sm-12 mb-1">
+                            <h1>Règles</h1>
+                            <ul>
+                                <li><h3>4 Joueurs</h3></li>
+                                    <ul><li>par équipe de 2</li></ul>
+                                <li><h3>10 mots</h3></li>
+                                    <ul><li>par joueur</li></ul>
+                                <li><h3>1 minute</h3></li>
+                                    <ul><li>pour faire deviner un maximum <br> de mot à son partenaire</li></ul>
+                                <li><h3>3 manches</h3></li>
+                                    <ul>
+                                        <li>1ère manche : faire deviner le mot comme on le veut</li>
+                                        <li>2ème manche : Faire deviner avec un seul mot</li>
+                                        <li>3ème manche :  Faire deviner avec des mimes</li>
+                                    </ul>
+                            </ul>
+                            <form action="/" method="post" class="container" id="form_pseudo">
+                                <div class="row">
+                                    <div class="col-sm mb-2">
+                                        <input type="text" name="pseudo" id="pseudo" placeholder="Votre pseudo..." required />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <input type="submit" class="btn btn-secondary" id="send_pseudo" value="valider">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center d-none" id="downside">
                         <form action="/" method="post" class="container" id="form_addword">
                             <div class="row">
                                 <div class="col-sm-12 mb-1">
@@ -46,8 +82,8 @@
                                 <div class="col-sm-12 mb-1">
                                     <input type="text" name="word9" id="word9" placeholder="Votre mot..." required />
                                 </div>
-                                <div class="col-sm-12 mb-4">
-                                    <input type="text" name="word9" id="word9" placeholder="Votre mot..." required />
+                                <div class="col-sm-12 mb-1">
+                                    <input type="text" name="word10" id="word10" placeholder="Votre mot..." required />
                                 </div>
                             </div>
                             <div class="row">
@@ -62,17 +98,14 @@
                                 <div class="row justify-content-center">
                                     <div class="col-xs-12" id="ready_game_text">
                                         <h3>Bienvenue</h3>
-                                        <p>Si vous êtes prêt à jouer<br>
-                                            vous pouvez cliquer sur le bouton <br>
-                                        </p>
                                     </div>
-                                    <div class="col-xs-12 d-none" id="start_game_text">
+                                    <div class="col-xs-12" id="start_game_text">
                                         <h4>Avant de commencer</h4>
-                                            <ol>
-                                                <li>Choisir les équipes et qui joue en 1er</li>
-                                                <li>Le 1er joueur à faire deviner clique sur <span class="font-weight-bolder">"Jouer"</span></li>
-                                                <li>Les autres joueurs peuvent lancer le chrono</li>
-                                            </ol>
+                                        <ol>
+                                            <li>Choisir les équipes et qui joue en 1er</li>
+                                            <li>Le 1er joueur à faire deviner clique sur <span class="font-weight-bolder">"Jouer"</span></li>
+                                            <li>Les autres joueurs peuvent lancer le chrono</li>
+                                        </ol>
                                         </p>
                                         <h4>Pendant la partie</h4>
                                         <ul>
@@ -80,21 +113,40 @@
                                             <li><button type="button" class="btn btn-success mb-1 btn-sm">Valider</button> Si votre equipe à trouvé le mot</li>
                                             <li><button type="button" class="btn btn-danger mb-2 btn-sm">Fin de tour</button> Une fois le temps écoulé</li>
                                         </ul>
-                                        <h4>Let's Play</h4>
+                                        <p>Si vous êtes prêt à jouer<br>
+                                            vous pouvez cliquer sur le bouton <br>
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-12 d-none" id="on_game_text">
+                                        <h4>A mon tour ?</h4>
                                     </div>
                                 </div>
                                 <div class="row justify-content-center mb-2">
                                     <div class="col-xs-12">
                                         <button type="button" class="btn btn-success" id="ready_game">Pret</button>
-                                        <button type="button" class="btn btn-primary d-none" id="start_game">Jouer</button>
+                                        <button type="button" class="btn btn-primary d-none mb-3" id="start_game">Jouer</button>
                                     </div>
+                                </div>
+                                <div class="row d-none justify-content-center" id="chrono_text">
+                                    <h5>Chronomètre</h5>
                                 </div>
                                 <div class="row justify-content-center mb-2 d-none" id="chrono_game">
                                     <form name="chronoForm">
-                                        <input type="text" name="chronotime" id="chronotime" value="0:00:00:00"/>
-                                        <input type="button" name="startstop" value="start" onClick="chronoStart()" />
-                                        <input type="button" name="reset" value="reset" onClick="chronoReset()" />
+                                        <div class="form-group">
+                                            <input class="rounded-pill text-center" type="text" name="chronotime" id="chronotime" value="0:00:00:00"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="startstop_button" class="btn btn-success" type="button" name="startstop" value="start" onClick="chronoStart()" />
+                                            <input class="btn btn-warning" type="button" name="reset" value="reset" onClick="chronoReset()" />
+                                        </div>
                                     </form>
+                                </div>
+                                <div class="row d-none justify-content-center" id="score_table">
+                                    <table class="table table-striped">
+                                        <tbody id="table_entry_point">
+                                            
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <div class="row justify-content-center mb-2 mt-4">
                                     <div class="col-xs-12">
@@ -104,7 +156,7 @@
                             </div>
                         </section>
 
-                        <section class="caontainer d-none" id="section_game">
+                        <section class="d-none" id="section_game">
                             <div class="container">
                                 <div class="row justify-content-center">
                                     <div class="col-12" id="game_word">
@@ -113,7 +165,7 @@
                                               Le mot à faire deviner est :
                                             </div>
                                             <div class="card-body container">
-                                                <h4 class="card-title mb-5" id="display_word" ></h4>
+                                                <h3 class="card-title mb-5" id="display_word" ></h3>
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <button type="button" class="btn btn-warning mb-2" id="skip_word">Passer</button>
@@ -127,15 +179,15 @@
                                                 <button type="button" class="btn btn-danger mb-2" id="end_of_turn">Fin de tour</button>
                                             </div>
                                           </div>
-                                        <p class="" ></p>
+                                        <div class="col-12" >
+                                            <button id="score" type="button" class="btn btn-secondary rounded-pill"></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </section>
                     </div>
                 </div>
-                        
-                    </div>
             </div>
 
 
@@ -143,9 +195,12 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
 
-        // Connexion à socket.io
-        var socket = io.connect('http://tumesip.ddns.net/');
 
+        // Connexion à socket.io
+        //var socket = io.connect('http://tumesip.ddns.net/'); //Prod
+        var socket = io.connect('http://localhost:8080/'); //local
+
+        let formpseudo = document.getElementById("form_pseudo");
         let formword = document.getElementById("form_addword");
         let formteam = document.getElementById("form_chooseteam");
         let formstart = document.getElementById("form_startgame");
@@ -160,15 +215,33 @@
         let displayword = document.getElementById("display_word");
         let endofturn = document.getElementById("end_of_turn");
         let nextrow = document.getElementById("next_row");
-        let chronogame = document.getElementById("chrono_game")
+        let chronogame = document.getElementById("chrono_game");
+        let count_down = document.getElementById("countdown");
+        let progress_bar = document.getElementById("progress_bar");
+        let on_game_text = document.getElementById("on_game_text");
+        let chrono_text = document.getElementById("chrono_text");
+        let score_text = document.getElementById("score");
+        let firstdownside = document.getElementById("firstdownside");
+        let downside = document.getElementById("downside");
+        let score_table = document.getElementById("score_table");
+        let entrypoint = document.getElementById("table_entry_point");
 
-        // On demande le pseudo, on l'envoie au serveur et on l'affiche dans le titre
-        var pseudo = prompt('Pseudo ?');
-        socket.emit('new_gamer', pseudo);
-        document.title = pseudo + ' - ' + document.title;
+        $('#form_pseudo').submit(function () {
+            let player = {};
+            player = {
+                pseudo: $('#pseudo').val(),
+                score: 0,
+            }
+            console.log(player);
+            socket.emit('player_info', player);
+            firstdownside.classList.add("d-none");
+            downside.classList.remove("d-none");
+            document.title = $('#pseudo').val() + ' - ' + document.title;
+            return false;
+
+        });
 
         $('#form_addword').submit(function () { 
-            
             let wordUser = {};
             wordUser = {
                 word1: $('#word1').val(),
@@ -180,6 +253,7 @@
                 word7: $('#word7').val(),
                 word8: $('#word8').val(),
                 word9: $('#word9').val(),
+                word10: $('#word10').val(),
             };
             socket.emit('transfert_words', wordUser); // Transmet les mots aux autres
             formword.classList.add("d-none");
@@ -194,7 +268,34 @@
             shuffleArray(array);
         })
 
+        socket.on('players', function(data) {
+            couting(data);
+            
+        })
+
+        function couting(data) {
+            readygame.onclick = function () {
+                socket.emit('transfert_words', {});
+                readygame.classList.add("d-none");
+                readygametext.classList.add("d-none");
+                startgame.classList.remove("d-none");
+                on_game_text.classList.remove("d-none");
+                chrono_text.classList.remove("d-none");
+                startgametext.classList.add("d-none");
+                chronogame.classList.remove("d-none");
+                score_table.classList.remove("d-none");
+                console.log(data);
+                for (i = 1; i < 5; i++) {
+                    const entries = Object.entries(data.players[i]);
+                    console.log(entries[0][1]);
+                    $('#table_entry_point').append('<tr><td>' + entries[0][1] + '</td><td>' + entries[1][1] + '</td></tr>');
+                };
+            }
+        }
+
         function shuffleArray(array) {
+            let score = 0;
+            score_text.innerHTML = "";
             for(k = array.length - 1; k > 0 ; k--) { // Melange (shuffle) les éléments de l'array
                 const j = Math.floor(Math.random() * k)
                 const temp = array[k]
@@ -213,38 +314,36 @@
                 socket.emit('transfert_game_array', array);
             }
             validate.onclick = function () { // Bouton valider
-                /*let number = 0;
-                count = number++;
-                console.log(count);*/
+                if(array.length == "1") {
+                        displayword.innerHTML = "";
+                        $('#display_word').append("Fin de partie");
+                    };
                 array.splice(0, 1);
+                score += 1;
+                score_text.innerHTML = "";
+                $('#score').append("score : " + score );
+                socket.emit('transfert_score', score);
                 loadword(array, "validate");
                 socket.emit('transfert_game_array', array);
             }
         }
         
         function loadword(array, choice) { //Affichage des mots
-                    console.log(array);
                 $.each( array, function( key, value ) {
                     displayword.innerHTML = "";
-                    console.log(value);
                     $('#display_word').append(value);
                     return false;
                 });
         }
 
         startgame.onclick = function () {
-           game.classList.remove("d-none");
-           pregame.classList.add('d-none');
+            game.classList.remove("d-none");
+            pregame.classList.add('d-none');
+            count_down.classList.remove('d-none');
+            progress_bar.classList.remove('d-none'); 
+            countdown();
         }
 
-        readygame.onclick = function () {
-            socket.emit('transfert_words', {});
-            readygame.classList.add("d-none");
-            readygametext.classList.add("d-none");
-            startgame.classList.remove("d-none");
-            startgametext.classList.remove("d-none");
-            chronogame.classList.remove("d-none");
-        }
 
         endofturn.onclick = function () {
             game.classList.add("d-none");
@@ -252,18 +351,44 @@
             nextrow.classList.remove("d-none");
             readygametext.classList.add("d-none");
             startgametext.classList.add("d-none");
+            count_down.classList.add('d-none');
+            progress_bar.classList.add('d-none');
+            count_down.innerHTML = "";
         }
 
         nextrow.onclick = function () {
             readygame.classList.remove("d-none");
             readygametext.classList.remove("d-none");
             startgame.classList.add("d-none");
+            score_table.classList.add("d-none");
+            on_game_text.classList.add("d-none");
+            chrono_text.classList.add("d-none");
             startgametext.classList.add("d-none");
             chronogame.classList.add("d-none");
             nextrow.classList.add("d-none");
+            count_down.innerHTML = "";
         }
 
+        /******* COMPTE A REBOUR ******/
 
+        let countdown_number = document.getElementById('countdown');
+        let progress_bar_active = document.getElementById('progress_bar_active')
+
+        function countdown () {
+            
+            let count = countdown_number.innerText;
+            if(count == "") {
+                count = '60';
+            }
+            count --;
+            countdown_number.innerHTML = "";
+            $('#countdown').append('<h4>' + count +'</h4>');
+            progress_bar_active.style.width = (count*1.7) + "%";
+            if (count >= 1) {
+            setTimeout("countdown();", 1000);
+            }
+        }
+        
         /******* CHRONOMETRE *******/
 
         var startTime = 0

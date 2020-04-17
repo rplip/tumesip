@@ -1,5 +1,7 @@
 body {
     text-align: center;
+    
+    font-family: 'Slabo 27px', serif;
 }
 
 #start_game_text > ol {
@@ -14,6 +16,26 @@ body {
 
 #cardgame {
     width: 350px;
+}
+
+#chrono_text, #score {
+    margin-top: 2rem;
+}
+
+#next_row {
+    margin-top: -1rem;
+}
+
+#firstdownside > div > ul, #firstdownside > div > ul > ul {
+    list-style: none;
+}
+
+#firstdownside > div > ul > li > h3 {
+    margin-top: .5rem;
+}
+
+#score_table > table {
+    width: 60%;
 }
 
 @media (min-width : 750px) { /* A partir de 750pixels */
@@ -39,6 +61,10 @@ body {
         justify-content: center;
     }
 
+    #downside {
+        margin-top: 3rem;
+    }
+
     h1, h5 {
         display: none;
     }
@@ -49,15 +75,20 @@ body {
 }
 
 @media (max-width : 750px) { /* En dessous de 750px */
+
+    #firstdownside > div > ul, #firstdownside > div > ul > ul {
+        text-align: left;
+        padding-left: 20px;
+    }
     #topside {
-        background-image: url("../image/topside.png");
-        background-size: contain;
+        background-image: url("../image/banniere.png");
+        background-size: cover;
         background-repeat: no-repeat;
         color: white;
         display:flex;
         flex-direction:column;
         justify-content: center;
-        height : 25vh;
+        height : 14vh;
         color: #e3a926;
     }
 

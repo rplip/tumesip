@@ -15,6 +15,8 @@ app.get('/', function (req, res) {
 let words = {};
 let increment = 0;
 let wordsInArray = [];
+let players = {};
+let i = 0;
 
 io.sockets.on('connection', function (socket, pseudo) {
 // Dès qu'on nous donne un pseudo, on le stocke en variable de session et on informe les autres personnes
@@ -24,10 +26,23 @@ io.sockets.on('connection', function (socket, pseudo) {
         socket.broadcast.emit('new_gamer', pseudo);
     });
 
-    // Dès qu'on reçoit les mots, on récupère le pseudo de son auteur et on le transmet aux autres personnes
+    socket.on('player_info', function(player) {
+
+        i++;
+        console.log(players);
+        if (i < 5) { //limite à 4 joueurs
+            players[i] = Object.assign({}, player)
+            console.log(players[i]);
+        }
+        socket.broadcast.emit('players', {
+            players: players,
+        })
+
+    });
+
+    // Dès qu'on reçoit les mots
     socket.on('transfert_words', function (wordUser) {
 
-        //words[socket.pseudo] = wordUser;
         words[increment++] = wordUser;
         socket.words = words;
         if (Object.values(words).length > 4) { // Entre dans la boucle si 3 joueurs
@@ -49,5 +64,5 @@ io.sockets.on('connection', function (socket, pseudo) {
 
 });
 
-
-server.listen(80);
+//server.listen(80); //Prod
+server.listen(8080); // Local
