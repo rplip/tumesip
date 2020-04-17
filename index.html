@@ -41,7 +41,7 @@
                             <form action="/" method="post" class="container" id="form_pseudo">
                                 <div class="row">
                                     <div class="col-sm mb-2">
-                                        <input type="text" name="pseudo" id="pseudo" placeholder="Votre pseudo..." required />
+                                        <input class="rounded-pill border" type="text" name="pseudo" id="pseudo" placeholder="Votre pseudo..." required />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -56,34 +56,34 @@
                         <form action="/" method="post" class="container" id="form_addword">
                             <div class="row">
                                 <div class="col-sm-12 mb-1">
-                                    <input type="text" name="word1" id="word1" placeholder="Votre mot..." required autofocus/>
+                                    <input class="rounded border" type="text" name="word1" id="word1" placeholder="Votre mot..." required autofocus/>
                                 </div>
                                 <div class="col-sm-12 mb-1">
-                                    <input type="text" name="word2" id="word2" placeholder="Votre mot..." required />
+                                    <input class="rounded border" type="text" name="word2" id="word2" placeholder="Votre mot..." required />
                                 </div>
                                 <div class="col-sm-12 mb-1">
-                                    <input type="text" name="word3" id="word3" placeholder="Votre mot..." required />
+                                    <input class="rounded border" type="text" name="word3" id="word3" placeholder="Votre mot..." required />
                                 </div>
                                 <div class="col-sm-12 mb-1">
-                                    <input type="text" name="word4" id="word4" placeholder="Votre mot..." required />
+                                    <input class="rounded border" type="text" name="word4" id="word4" placeholder="Votre mot..." required />
                                 </div>
                                 <div class="col-sm-12 mb-1">
-                                    <input type="text" name="word5" id="word5" placeholder="Votre mot..." required />
+                                    <input class="rounded border" type="text" name="word5" id="word5" placeholder="Votre mot..." required />
                                 </div>
                                 <div class="col-sm-12 mb-1">
-                                    <input type="text" name="word6" id="word6" placeholder="Votre mot..." required />
+                                    <input class="rounded border" type="text" name="word6" id="word6" placeholder="Votre mot..." required />
                                 </div>
                                 <div class="col-sm-12 mb-1">
-                                    <input type="text" name="word7" id="word7" placeholder="Votre mot..." required />
+                                    <input class="rounded border" type="text" name="word7" id="word7" placeholder="Votre mot..." required />
                                 </div>
                                 <div class="col-sm-12 mb-1">
-                                    <input type="text" name="word8" id="word8" placeholder="Votre mot..." required />
+                                    <input class="rounded border" type="text" name="word8" id="word8" placeholder="Votre mot..." required />
                                 </div>
                                 <div class="col-sm-12 mb-1">
-                                    <input type="text" name="word9" id="word9" placeholder="Votre mot..." required />
+                                    <input class="rounded border" type="text" name="word9" id="word9" placeholder="Votre mot..." required />
                                 </div>
                                 <div class="col-sm-12 mb-1">
-                                    <input type="text" name="word10" id="word10" placeholder="Votre mot..." required />
+                                    <input class="rounded border" type="text" name="word10" id="word10" placeholder="Votre mot..." required />
                                 </div>
                             </div>
                             <div class="row">
@@ -197,8 +197,8 @@
 
 
         // Connexion à socket.io
-        //var socket = io.connect('http://tumesip.ddns.net/'); //Prod
-        var socket = io.connect('http://localhost:8080/'); //local
+        var socket = io.connect('http://tumesip.ddns.net/'); //Prod
+        //var socket = io.connect('http://localhost:8080/'); //local
 
         let formpseudo = document.getElementById("form_pseudo");
         let formword = document.getElementById("form_addword");

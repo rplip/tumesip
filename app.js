@@ -64,5 +64,5 @@ io.sockets.on('connection', function (socket, pseudo) {
 
 });
 
-//server.listen(80); //Prod
-server.listen(8080); // Local
+server.listen(80); //Prod
+//server.listen(8080); // Local
