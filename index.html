@@ -232,7 +232,6 @@
                 pseudo: $('#pseudo').val(),
                 score: 0,
             }
-            console.log(player);
             socket.emit('player_info', player);
             firstdownside.classList.add("d-none");
             downside.classList.remove("d-none");
@@ -284,12 +283,12 @@
                 startgametext.classList.add("d-none");
                 chronogame.classList.remove("d-none");
                 score_table.classList.remove("d-none");
-                console.log(data);
-                for (i = 1; i < 5; i++) {
+                //console.log(data);
+                /*for (i = 1; i < 5; i++) {
                     const entries = Object.entries(data.players[i]);
                     console.log(entries[0][1]);
                     $('#table_entry_point').append('<tr><td>' + entries[0][1] + '</td><td>' + entries[1][1] + '</td></tr>');
-                };
+                };*/
             }
         }
 
@@ -344,18 +343,6 @@
             countdown();
         }
 
-
-        endofturn.onclick = function () {
-            game.classList.add("d-none");
-            pregame.classList.remove("d-none");
-            nextrow.classList.remove("d-none");
-            readygametext.classList.add("d-none");
-            startgametext.classList.add("d-none");
-            count_down.classList.add('d-none');
-            progress_bar.classList.add('d-none');
-            count_down.innerHTML = "";
-        }
-
         nextrow.onclick = function () {
             readygame.classList.remove("d-none");
             readygametext.classList.remove("d-none");
@@ -368,6 +355,20 @@
             nextrow.classList.add("d-none");
             count_down.innerHTML = "";
         }
+        
+        endofturn.onclick = function () {
+                game.classList.add("d-none");
+                pregame.classList.remove("d-none");
+                nextrow.classList.remove("d-none");
+                readygametext.classList.add("d-none");
+                startgametext.classList.add("d-none");
+                count_down.classList.add('d-none');
+                progress_bar.classList.add('d-none');
+                count_down.innerHTML = "";
+                let row = 0;
+                row ++;
+                socket.emit('row_number', row);
+            }
 
         /******* COMPTE A REBOUR ******/
 

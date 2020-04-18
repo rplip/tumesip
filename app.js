@@ -29,11 +29,10 @@ io.sockets.on('connection', function (socket, pseudo) {
     socket.on('player_info', function(player) {
 
         i++;
-        console.log(players);
         if (i < 5) { //limite à 4 joueurs
             players[i] = Object.assign({}, player)
-            console.log(players[i]);
         }
+        socket.players = players;
         socket.broadcast.emit('players', {
             players: players,
         })
@@ -61,6 +60,14 @@ io.sockets.on('connection', function (socket, pseudo) {
     socket.on('transfert_game_array', function (game_array) {
         socket.broadcast.emit('actual_game_array', game_array);
     });
+
+    socket.on('transfert_score', function (score) {
+        socket.score = score;
+    });
+
+    socket.on('row_number', function (row) {
+        socket.row = row;
+    })
 
 });
 
