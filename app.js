@@ -39,6 +39,12 @@ io.sockets.on('connection', function (socket, pseudo) {
 
     });
 
+    socket.on('erase_array' ,function(emptyarray) {
+        socket.wordsInArray = emptyarray;
+        socket.broadcast.emit('erase_array');
+        console.log(socket.wordsInArray);
+    });
+
     // Dès qu'on reçoit les mots
     socket.on('transfert_words', function (wordUser) {
 

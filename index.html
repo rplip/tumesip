@@ -50,6 +50,13 @@
                                     </div>
                                 </div>
                             </form>
+                            <form action="/" method="post" class="container" id="form_erase">
+                                <div class="row">
+                                    <div class="col-sm mt-5">
+                                        <input type="submit" class="btn btn-danger" id="erase_array" value="Effacer">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div class="row justify-content-center d-none" id="downside">
@@ -225,6 +232,7 @@
         let downside = document.getElementById("downside");
         let score_table = document.getElementById("score_table");
         let entrypoint = document.getElementById("table_entry_point");
+        let erase_array = document.getElementById("erase_array");
 
         $('#form_pseudo').submit(function () {
             let player = {};
@@ -238,6 +246,11 @@
             document.title = $('#pseudo').val() + ' - ' + document.title;
             return false;
 
+        });
+
+        $('#form_erase').submit(function() {
+            socket.emit('erase_array', []);
+            return false;
         });
 
         $('#form_addword').submit(function () { 
@@ -265,6 +278,7 @@
         })
         socket.on('actual_game_array' , function(array) {
             shuffleArray(array);
+            console.log(array);
         })
 
         socket.on('players', function(data) {
@@ -273,23 +287,7 @@
         })
 
         function couting(data) {
-            readygame.onclick = function () {
-                socket.emit('transfert_words', {});
-                readygame.classList.add("d-none");
-                readygametext.classList.add("d-none");
-                startgame.classList.remove("d-none");
-                on_game_text.classList.remove("d-none");
-                chrono_text.classList.remove("d-none");
-                startgametext.classList.add("d-none");
-                chronogame.classList.remove("d-none");
-                score_table.classList.remove("d-none");
-                //console.log(data);
-                /*for (i = 1; i < 5; i++) {
-                    const entries = Object.entries(data.players[i]);
-                    console.log(entries[0][1]);
-                    $('#table_entry_point').append('<tr><td>' + entries[0][1] + '</td><td>' + entries[1][1] + '</td></tr>');
-                };*/
-            }
+            console.log('undefined');
         }
 
         function shuffleArray(array) {
@@ -334,6 +332,24 @@
                     return false;
                 });
         }
+
+        readygame.onclick = function () {
+                socket.emit('transfert_words', {});
+                readygame.classList.add("d-none");
+                readygametext.classList.add("d-none");
+                startgame.classList.remove("d-none");
+                on_game_text.classList.remove("d-none");
+                chrono_text.classList.remove("d-none");
+                startgametext.classList.add("d-none");
+                chronogame.classList.remove("d-none");
+                score_table.classList.remove("d-none");
+                //console.log(data);
+                /*for (i = 1; i < 5; i++) {
+                    const entries = Object.entries(data.players[i]);
+                    console.log(entries[0][1]);
+                    $('#table_entry_point').append('<tr><td>' + entries[0][1] + '</td><td>' + entries[1][1] + '</td></tr>');
+                };*/
+            }
 
         startgame.onclick = function () {
             game.classList.remove("d-none");
