@@ -64,9 +64,16 @@ body {
         margin-top: 3rem;
     }
 
-    h1, h5 {
-        display: none;
+    #rules-list {
+        margin-right: 3rem;
     }
+
+    #rules-list > ul {
+        margin-right: 3rem;
+    }
+
+    
+
 }
 
 @media (max-width : 750px) { /* En dessous de 750px */
