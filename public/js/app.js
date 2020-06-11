@@ -1,6 +1,6 @@
 // Connexion à socket.io
-//var socket = io.connect('http://tumesip.ddns.net/'); //Prod
-var socket = io.connect('http://localhost:8080/'); //local
+var socket = io.connect('http://tumesip.ddns.net/'); //Prod
+//var socket = io.connect('http://localhost:8080/'); //local
 
 let formpseudo = document.getElementById("form_pseudo");
 let formword = document.getElementById("form_addword");
